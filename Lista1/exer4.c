@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+// Leia N valores Inteiros. A seguir mostre quantos valores digitados foram pares, quantos valores digitados foram ímpares, quantos valores digitados foram positivos e quantos valores digitados foram negativos.
 int main(){
     int quant, num, pos=0, neg=0, par=0, impar=0;
     printf("quantos numeros serao lidos?\n");
