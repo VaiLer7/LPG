@@ -4,23 +4,22 @@
         {
             "label": "Criar pasta executaveis",
             "type": "shell",
-            "command": "mkdir",
+            "command": "cmd",
             "args": [
-                "-p",
-                "\"${fileDirname}/executaveis\""
+                "/c",
+                "if not exist \"${fileDirname}\\executaveis\" mkdir \"${fileDirname}\\executaveis\""
             ]
         },
         {
             "label": "Compilar C",
-            "type": "shell",
-            "command": "gcc",
+            "type": "cppbuild",
+            "command": "C:\\MinGW\\bin\\gcc.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "-O0",
-                "\"${file}\"",
+                "${file}",
                 "-o",
-                "\"${fileDirname}/executaveis/${fileBasenameNoExtension}\""
+                "${fileDirname}\\executaveis\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
                 "cwd": "${fileDirname}"
@@ -33,7 +32,6 @@
                 "Criar pasta executaveis",
                 "Compilar C"
             ],
-            "dependsOrder": "sequence",
             "group": {
                 "kind": "build",
                 "isDefault": true

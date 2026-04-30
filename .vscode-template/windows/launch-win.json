@@ -5,13 +5,13 @@
             "name": "Debug C",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/executaveis/${fileBasenameNoExtension}",
+            "program": "${fileDirname}\\executaveis\\${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
-            "externalConsole": false,
+            "externalConsole": true,
             "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb",
+            "miDebuggerPath": "C:/MinGW/bin/gdb.exe",
             "preLaunchTask": "Build Completo"
         }
     ]

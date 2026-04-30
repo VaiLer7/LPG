@@ -1,0 +1,7 @@
+Se estiver clonando como novo esse repositorio, sem ter um .vscode já configurado, voce vai criar uma nova pasta ".vscode" nela colocando "launch.json" e "tasks.json" com as predefinidas configurações já criadas dentro de cada pasta do sistema operacional que estiver utilizando. Deixando da seguinte maneira:
+
+.vscode/
+    launch.json
+    tasks.json
+
+IMPORTANTE: Não substitua essa pasta (.vscode-template)! Crie uma nova pro .vscode, deixando essa aqui disponível para ser utilizada novamente no futuro, senão será "apagada" pelo .gitignore
