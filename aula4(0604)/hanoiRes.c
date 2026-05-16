@@ -7,6 +7,7 @@ int primeironum(int tamanho, int torre[3][tamanho], int posicao);
 void hanoi(int n,char origem,char destino,char auxiliar, int tamanho, int torres[3][tamanho]){
 /* Se sobrar apenas o disco 1, mova fazer o movimento e retornar */
     if(n==1){
+        sleep(2);
         printf("\nMova o disco 1 da torre %c para a torre %c  \n",origem ,destino);
         
         int de=origem-'A'; //identificar de qual torre esta send "pego" o disco
@@ -24,6 +25,7 @@ void hanoi(int n,char origem,char destino,char auxiliar, int tamanho, int torres
         /* Mover o n-1 disco de A para B, usando C de auxiliar */
         hanoi(n-1, origem, auxiliar, destino, tamanho, torres);
         /* Mover os discos restantes de A para C */
+        sleep(2);
         printf("Mova o disco %d da torre %c para a torre %c  \n",n,origem,destino);
 
         //aqui segue mesmo raciocinio que o anterior do if(n==1)
