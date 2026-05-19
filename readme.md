@@ -8,12 +8,12 @@ lista de coisas ja feitas:
 -arrays
 -if/else ternario
 -manipulação de string(basico)
+-recursividade(so sei fazer iteratividade)
 
 coisas q quero fazer:
 -malloc
 -aprofundamento em ponteiro
 -aprender umas bibliotecas aí
--recursividade(so sei fazer iteratividade)
 
 mais pro futuro:
 -otimizar codigos para O(1)
