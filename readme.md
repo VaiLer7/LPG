@@ -14,6 +14,7 @@ coisas q quero fazer:
 -malloc
 -aprofundamento em ponteiro
 -aprender umas bibliotecas aí
+-aprender utilizar struct
 
 mais pro futuro:
 -otimizar codigos para O(1)
