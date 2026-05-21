@@ -6,15 +6,9 @@ int main(){
 
     num = malloc(sizeof(int));
 
-    *num=1;
+    printf("digite o numero desejado: ");
+    scanf("%d", num);
 
-    printf("\nnum: %d", *num);
-
-    free(num);
-
-    printf("\nnum: %d", *num);
-
-    *num=2;
-
-    printf("\nnum: %d", *num);
+    int valor = *num;
+    printf("\nnum: %d", valor);
 }
