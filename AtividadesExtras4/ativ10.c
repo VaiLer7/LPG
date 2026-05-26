@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-void addnum(int*, int*);
-void remnum(int*, int*);
+void addnum(int**, int*);
+void remnum(int**, int*);
 void listar(int*, int);
 
 int SomenteNum(char str[]);
@@ -16,21 +16,21 @@ int main(){
     char escolha;
     
     int tam=0;
-    int *vetor = malloc(sizeof(int));
+    int *vetor = NULL;
     do{
         printf("1 - Adicionar numeros\n");
         printf("2 - Remover numeros\n");
         printf("3 - Listar numeros\n");
         printf("4 - Sair\n");
-        scanf("%c", &escolha);
+        scanf(" %c", &escolha);
         printf("\n");
 
         switch(escolha){
             case '1':
-                addnum(vetor, &tam);
+                addnum(&vetor, &tam);
                 break;
             case '2':
-                remnum(vetor, &tam);
+                remnum(&vetor, &tam);
                 break;
             case '3':
                 listar(vetor, tam);
@@ -42,13 +42,14 @@ int main(){
                 printf("Caractere nao correspondente, tente novamente:\n");
                 break;
         }
-        getchar();
     }while(escolha!='4');
+
+    free(vetor);
 
     return 0;
 }
 
-void addnum(int *vetor, int *tam){
+void addnum(int **vetor, int *tam){
     printf("Para parar de adicionar numeros, digite qualquer caractere que nao seja numero:\n");
     char texto[12];
     int ehnum, numero;
@@ -57,34 +58,39 @@ void addnum(int *vetor, int *tam){
         ehnum = SomenteNum(texto);
         if(ehnum) {
             numero = conversao(texto);
-            *tam=*tam+1;
+
+            (*tam)++;
+
+            *vetor=realloc(*vetor, *tam*sizeof(int));
+
+            (*vetor)[*tam-1]=numero;
+
         }
-
-        if(*tam-1!=0) vetor=realloc(vetor, *tam*sizeof(int));
-        *(vetor+(*tam-1))=numero;
-
     }while(ehnum);
 
     printf("\nOque deseja fazer agora?\n");
 }
 
-void remnum(int *vetor, int *tam){
+void remnum(int **vetor, int *tam){
     if(*tam==0){
         printf("Nao eh possivel remover nenhum numero, vetor vazio!\n\n");
     }else{
         char res;
         do{
-            printf("Deseja apagar esse numero: %d?\n(y/n): ", *(vetor+(*tam-1)));
-            getchar();
-            scanf("%c", &res);
+            printf("Deseja apagar esse numero: %d?\n(y/n): ", (*vetor)[*tam-1]);
+            scanf(" %c", &res);
             printf("\n");
             if(res=='y'){
-                *(vetor+*tam)=0;
-                *tam=*tam-1;
+                (*tam)--;
             }
         }while(res=='y'&&*tam>0);
 
-        if(*tam==0) printf("O vetor esvaziou, encha-o novamente!\n\n");
+        if(*tam==0) {
+            printf("O vetor esvaziou, encha-o novamente!\n\n");
+
+            free(*vetor);
+            *vetor=NULL;
+        }
     }
 }
 
@@ -126,7 +132,7 @@ int conversao(char stringue[]){
     }
     int valor=0;
 
-    int tamanho = (mult==1) ? potencia(10, strlen(stringue)-1) : potencia(10, strlen(stringue)-2);
+    int tamanho = potencia(10, strlen(stringue)-(1+i));
 
     for(; stringue[i]!='\0'; i++){
         valor+=(stringue[i]-'0')*tamanho;
