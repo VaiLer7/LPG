@@ -5,3 +5,9 @@ Se estiver clonando como novo esse repositorio, sem ter um .vscode já configura
     tasks.json
 
 IMPORTANTE: Não substitua essa pasta (.vscode-template)! Crie uma nova pro .vscode, deixando essa aqui disponível para ser utilizada novamente no futuro, senão será "apagada" pelo .gitignore
+
+Possiveis Erros:
+se nao executar e disser que o caminho do executavel nao foi encontrado:
+- verifique que voce possui gcc e gdb instalado
+- verifique se o caminho do gcc no tasks.json, label "Compilar C", no "command", é igual ao caminho em seu computador do seu gcc instalado.
+- mesma coisa faça com o gdb no launch.json, no "miDebuggerPath" tem que ter o mesmo caminho que em seu computador
