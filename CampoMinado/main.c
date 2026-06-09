@@ -3,22 +3,22 @@
 #include <string.h>
 #include <time.h>
 
-void visualizacao(int tam, char[tam][tam]);
-void preenchimento(int tam, char[tam][tam], char);
-void minas(int qtdd_bombas, int tam, char[tam][tam], int[qtdd_bombas][2]);
-void numeracao(int, int, int tam, char[tam][tam]);
-void cascata(int, int, int tam, char[tam][tam], char[tam][tam], int*);
-void perfil(int tam, int qtdd_bombas, char[tam][tam], char[tam][tam], int[qtdd_bombas][2]);
-void personalizado(int*, int*);
+void visualizacao(int tam, char[tam][tam]); //visual
+void preenchimento(int tam, char[tam][tam], char); //def
+void minas(int qtdd_bombas, int tam, char[tam][tam], int[qtdd_bombas][2]); //def
+void numeracao(int, int, int tam, char[tam][tam]); //def
+void cascata(int, int, int tam, char[tam][tam], char[tam][tam], int*); //def
+void perfil(int tam, int qtdd_bombas, char[tam][tam], char[tam][tam], int[qtdd_bombas][2]); //dif
+void personalizado(int*, int*); //dif
 
-void bandeira(int*, float*, int*, int*, int*, int tam, char[tam][tam], char[tam][tam]);
-void clicar(int*, float*, int*, int*, int*, int tam, char[tam][tam], char[tam][tam]);
+void bandeira(int*, float*, int*, int*, int*, int tam, char[tam][tam], char[tam][tam]); //func
+void clicar(int*, float*, int*, int*, int*, int tam, char[tam][tam], char[tam][tam]); //func
 
-void criacao();
-void gravacao(int, float);
-char *dificuldade(int);
+void criacao(); //arq
+void gravacao(int, float); //arq
+char *dificuldade(int); //dif
 
-void coloracao(char);
+void coloracao(char); //visual
 
 #define ANSI_RESET "\033[0m"
 
@@ -36,7 +36,7 @@ void coloracao(char);
 #define ANSI_BOMBA "\033[1;38;2;0;0;0m"//Bomba
 #define ANSI_BOMBA_EXPLODIDA "\033[1;38;2;0;0;0m"//Bomba explodida
 #define ANSI_NAO_DESCOBERTO "\033[1;37m"//Nao descoberto
-
+// ^^visual
 
 int main(){
     srand(time(NULL));
