@@ -1,3 +1,4 @@
 *.exe
 executaveis/
 .vscode/
+*arquivo.txt
