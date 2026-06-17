@@ -15,7 +15,7 @@ char *dificuldade(int);
 void escolhas(int, int*, int*);
 
 void personalizado(int *tam, int *qtdd_minas){
-    printf("insira o tamanho do jogo(max 100): ");
+    printf("\ninsira o tamanho do jogo(max 100): ");
     scanf("%d", tam);
 
     printf("\nescolha a porcentagem de preenchimento (0 a 100): ");

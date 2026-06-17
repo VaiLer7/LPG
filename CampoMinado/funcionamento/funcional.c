@@ -23,7 +23,7 @@ void bandeira(int *pontuacao_max, float *pontuacao_atual, int *qtdd_minas, int *
 
         printf("\nPara sair do modo 'Colocar Bandeira', digite qualquer numero negativo nas cordenadas\n");
         int i, j;
-        printf("\nSelecione linha e coluna:\n");
+        printf("\nSelecione linha e coluna:\n"); //pegando informação de linha e coluna
 
         printf("Linha: ");
         scanf(" %d", &i);
@@ -37,27 +37,25 @@ void bandeira(int *pontuacao_max, float *pontuacao_atual, int *qtdd_minas, int *
             break;
         }
 
-        if(isdigit(tabela_usuario[i][j])){
-            break;
+        if(!isdigit(tabela_usuario[i][j])){ //so vai fazer algo se nao for digito
+            switch(tabela_usuario[i][j]){
+                case 'P':
+                    tabela_usuario[i][j]='+';
+                    break;
+                default:
+                    tabela_usuario[i][j]='P';
+                    break;
+            }
+
+            (*total_jogadas)++;
+
+            float dificuldade = ((float)*qtdd_minas) / (tam * tam);
+
+            *pontuacao_atual=1 + (*pontuacao_max - 1) / (1 + (*total_jogadas) * (1.0f - dificuldade));;
+
+            pontuacoes(total_aberto, total_jogadas, qtdd_minas, pontuacao_atual, pontuacao_max);
         }
-
-        switch(tabela_usuario[i][j]){
-            case 'P':
-                tabela_usuario[i][j]='+';
-                break;
-            default:
-                tabela_usuario[i][j]='P';
-                break;
-        }
-
-        (*total_jogadas)++;
-
-        float dificuldade = ((float)*qtdd_minas) / (tam * tam);
-
-        *pontuacao_atual=1 + (*pontuacao_max - 1) / (1 + (*total_jogadas) * (1.0f - dificuldade));;
-
-        pontuacoes(total_aberto, total_jogadas, qtdd_minas, pontuacao_atual, pontuacao_max);
-    }while(1);
+    }while(1); //repetir indefinidamente
 }
 
 void clicar(int *pontuacao_max, float *pontuacao_atual, int *qtdd_minas, int *total_jogadas, int *total_aberto, int tam, char tabela[tam][tam], char tabela_usuario[tam][tam]){
@@ -70,7 +68,7 @@ void clicar(int *pontuacao_max, float *pontuacao_atual, int *qtdd_minas, int *to
 
         printf("\nPara sair do modo 'Clicar cordenada', digite qualquer numero negativo nas cordenadas\n");
         int i, j;
-        printf("\nSelecione linha e coluna: \n");
+        printf("\nSelecione linha e coluna: \n"); //pegando informação de linha e coluna
 
         printf("Linha: ");
         scanf(" %d", &i);
@@ -84,12 +82,12 @@ void clicar(int *pontuacao_max, float *pontuacao_atual, int *qtdd_minas, int *to
             break;
         }
         
-        if(tabela_usuario[i][j]!='P'&&!isdigit(tabela_usuario[i][j])){
+        if(tabela_usuario[i][j]!='P'&&!isdigit(tabela_usuario[i][j])){ //só vai fazer algo se nao for bandeira nem numero
             (*total_jogadas)++;
 
             float dificuldade = ((float)*qtdd_minas) / (tam * tam);
 
-            *pontuacao_atual=1 + (*pontuacao_max - 1) / (1 + (*total_jogadas) * (1.0f - dificuldade));;
+            *pontuacao_atual=1 + (*pontuacao_max - 1) / (1 + (*total_jogadas) * (1.0f - dificuldade)); //define nova pontuação
 
             if(tabela[i][j]=='X'){
                 tabela_usuario[i][j]='#';
@@ -106,5 +104,5 @@ void clicar(int *pontuacao_max, float *pontuacao_atual, int *qtdd_minas, int *to
                 break;
             }
         }
-    }while(1);
+    }while(1); //repetir indefinidamente
 }

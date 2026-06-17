@@ -17,7 +17,10 @@ void desistencia(float*, int tam, char[tam][tam]);
 void ganho(int, int qtdd_minas, int tam, char[tam][tam], int[qtdd_minas][2]);
 void explodido(int qtdd_minas, int tam, char[tam][tam], int[qtdd_minas][2]);
 
-#define ANSI_RESET "\033[0m"
+
+//define as cores dos numeros e artefatos
+
+#define ANSI_RESET "\033[0m"//volta pro padrao
 
 #define ANSI_0 "\033[0;37m"//0
 #define ANSI_1 "\033[1;34m"//1
@@ -40,7 +43,7 @@ void visualizacao(int tam, char tabela[tam][tam]){
     
     printf("     ");
     if(tam%10>9){
-        printf(" ");
+        printf(" "); //nao me lembro oq fiz aqui, mas melhor n mecher
     }
     //numeracao  dezenas
     for(int i=0; i<tam; i++){
@@ -51,7 +54,7 @@ void visualizacao(int tam, char tabela[tam][tam]){
 
     printf("     ");
     if(tam%10>9){
-        printf(" ");
+        printf(" "); //nao me lembro oq fiz aqui, mas melhor n mecher
     }
     //numeracao resto
     for(int i=0; i<tam; i++){
@@ -79,7 +82,7 @@ void visualizacao(int tam, char tabela[tam][tam]){
     printf("\n");
 }
 
-void coloracao(char caractere){
+void coloracao(char caractere){ //define uma estilização para cada caractere
     switch(caractere){
         case '0':
             printf(ANSI_0 "%c " ANSI_RESET, caractere);
@@ -111,7 +114,7 @@ void coloracao(char caractere){
         case 'P':
             printf(ANSI_BANDEIRA "%c " ANSI_RESET, caractere);
             break;
-        case 'C':
+        case 'C': //seria utilizado para morte por chording, mas nao consegui implementar
             //printf(ANSI_CHORDING "%c " ANSI_RESET, caractere);
             printf("\033[1;33;2;0;0;0;41m%c\033[0m ", caractere);
             break;
@@ -131,7 +134,7 @@ void coloracao(char caractere){
     }
 }
 
-void limparTela() {
+void limparTela() { //percebe qual sistema operacional está, e limpa a tela de acordo
     #ifdef _WIN32
         system("cls");
     #elif defined(__linux__) || defined(__unix__)
@@ -143,21 +146,21 @@ void limparTela() {
     #endif
 }
 
-void pontuacoes(int *total_aberto, int *total_jogadas, int *qtdd_minas, float *pontuacao_atual, int *pontuacao_max){
+void pontuacoes(int *total_aberto, int *total_jogadas, int *qtdd_minas, float *pontuacao_atual, int *pontuacao_max){ //mostra pontuações atualizadas
     printf("\nQuadrados abertos sobrando: %d\n", *total_aberto);
     printf("Total jogadas: %d\n", *total_jogadas);
     printf("Quantidade de bombas: %d\n", *qtdd_minas);
     printf("Pontuacao atual: %.2f  |  Pontuacao maxima: %d\n", *pontuacao_atual, *pontuacao_max);
 }
 
-void desistencia(float *pontuacao_atual, int tam, char tabela[tam][tam]){
+void desistencia(float *pontuacao_atual, int tam, char tabela[tam][tam]){ //caso usuario desistir
     limparTela();
     *pontuacao_atual=0;
     printf("Voce Desistiu!\n");
     visualizacao(tam, tabela);
 }
 
-void ganho(int total_jogadas, int qtdd_minas, int tam, char tabela_usuario[tam][tam], int localizacao_minas[qtdd_minas][2]){
+void ganho(int total_jogadas, int qtdd_minas, int tam, char tabela_usuario[tam][tam], int localizacao_minas[qtdd_minas][2]){ //caso usuario ganhar
     limparTela();
     printf("\nParabens! Voce concluiu o campo minado!\n");
     printf("Total jogadas: %d\n", total_jogadas);
@@ -168,10 +171,10 @@ void ganho(int total_jogadas, int qtdd_minas, int tam, char tabela_usuario[tam][
     visualizacao(tam, tabela_usuario);
 }
 
-void explodido(int qtdd_minas, int tam, char tabela_usuario[tam][tam], int localizacao_bombas[qtdd_minas][2]){
+void explodido(int qtdd_minas, int tam, char tabela_usuario[tam][tam], int localizacao_bombas[qtdd_minas][2]){ //caso usuario perder
     limparTela();
     for(int i=0; i<qtdd_minas; i++){
-        char *quadrado = &tabela_usuario[localizacao_bombas[i][0]][localizacao_bombas[i][1]];
+        char *quadrado = &tabela_usuario[localizacao_bombas[i][0]][localizacao_bombas[i][1]]; //revela somente as localizações das bombas, e nao a tabela inteira
         
         if(*quadrado!='P' && *quadrado!='#'){
             *quadrado='X';

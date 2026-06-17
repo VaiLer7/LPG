@@ -9,7 +9,8 @@
 #include "funcionamento/funcional.h"
 #include "visual/visual.h"
 
-//gcc $(find ~/Udesc/LPG/CampoMinado -name "*.c") -o programa
+//cd (caminho pra pasta CampoMinado)
+//gcc $(find -name "*.c") -o programa
 //./programa
 
 int main(){
@@ -48,13 +49,13 @@ int main(){
         char tabela[tam][tam];
         char tabela_usuario[tam][tam];
                     
-        qtdd_minas=(tam*tam)*((float)qtdd_minas/100);
+        qtdd_minas=(tam*tam)*((float)qtdd_minas/100); //transforma o numero de porcentagem de minas, em quantidade de minas totais
 
         int localizacao_minas[qtdd_minas][2];
 
         limparTela();
 
-        perfil(tam, qtdd_minas, tabela, tabela_usuario, localizacao_minas);
+        perfil(tam, qtdd_minas, tabela, tabela_usuario, localizacao_minas); //cria as tabelas
 
         int pontuacao_max=(tam*tam)*qtdd_minas;
         float pontuacao_atual=(float)pontuacao_max;
@@ -66,7 +67,7 @@ int main(){
             limparTela();
             pontuacoes(&total_aberto, &total_jogadas, &qtdd_minas, &pontuacao_atual, &pontuacao_max);
             visualizacao(tam, tabela_usuario);
-            visualizacao(tam, tabela);
+            //visualizacao(tam, tabela); //retirar '//' caso queira xitar
             
             printf("Deseja:\n");
             printf(" 1 - Modo: Colocar bandeira \n");
